@@ -75,6 +75,28 @@
           </li>
         </ul>
       </section>
+
+      <section>
+        <h2>Exemplo com contador</h2>
+
+        <div class="container-contador">
+          <p id="contador">0</p>
+          <button id="diminuir">- Diminuir</button>
+          <button id="aumentar">+ Aumentar</button>
+        </div>
+      </section>
+
+      <section class="criar-elementos">
+        <h2>Criando elementos</h2>
+        <form>
+          <label for="tarefa"> Digite a sua tarefa </label>
+          <input type="text" id="tarefa" placeholder="Comprar banana..." />
+
+          <button id="adicionar-item">Adicionar item</button>
+        </form>
+
+        <ul id="lista"></ul>
+      </section>
     </main>
 
     <footer>
@@ -95,8 +117,42 @@
       tituloPrincipal.style.fontSize = "2.5rem";
 
       // Capturando mais de um elemento
-      const sections = document.querySelector("section");
-      console.log(sections)
+      const sections = document.querySelectorAll("section");
+      sections.forEach(function (section) {
+        section.style.backgroundColor = "#222222";
+      });
+      console.log(sections);
+
+      // Exemplo de contador
+      const contador = document.getElementById("contador");
+      const btnAumentar = document.querySelector("#aumentar");
+      const btnDiminuir = document.querySelector("#diminuir");
+
+      let numero = 0;
+
+      btnAumentar.addEventListener("click", function () {
+        numero++;
+
+        contador.textContent = numero;
+      });
+
+      btnDiminuir.addEventListener("click", () => {
+        numero--;
+        contador.textContent = numero;
+      });
+
+      // Criando elementos
+      const lista = document.querySelector("#lista");
+      const botao = document.querySelector("#adicionar-item");
+
+      botao.addEventListener("click", function () {
+        // 1 - Cria elemento
+        const itemLista = document.createElement("li");
+        // 2 - Atualiza elemento com conteúdo
+        itemLista.textContent = "Estudar Eventos do JavaScript";
+        // 3 - Anexa/insere/adicionar item a lista
+        lista.appendChild(itemLista);
+      });
     </script>
   </body>
 </html>
