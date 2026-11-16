@@ -88,11 +88,11 @@
 
       <section class="criar-elementos">
         <h2>Criando elementos</h2>
-        <form>
+        <form id="form-tarefa">
           <label for="tarefa"> Digite a sua tarefa </label>
           <input type="text" id="tarefa" placeholder="Comprar banana..." />
 
-          <button id="adicionar-item">Adicionar item</button>
+          <button id="adicionar-item" type="submit">Adicionar item</button>
         </form>
 
         <ul id="lista"></ul>
@@ -142,16 +142,49 @@
       });
 
       // Criando elementos
-      const lista = document.querySelector("#lista");
-      const botao = document.querySelector("#adicionar-item");
+      //const lista = document.querySelector("#lista");
+      // const botao = document.querySelector("#adicionar-item");
 
-      botao.addEventListener("click", function () {
-        // 1 - Cria elemento
+      //botao.addEventListener("click", function () {
+      // 1 - Cria elemento
+      //  const itemLista = document.createElement("li");
+      // 2 - Atualiza elemento com conteúdo
+      //  itemLista.textContent = "Estudar Eventos do JavaScript";
+      // 3 - Anexa/insere/adicionar item a lista
+      // lista.appendChild(itemLista);
+      // });
+
+      // 1 - Capturar elementos
+      const lista = document.querySelector("#lista");
+      const formulario = document.querySelector("#form-tarefa");
+      const inputTarefa = document.querySelector("#tarefa");
+
+      // 2 - Configurando o evento/ação
+      formulario.addEventListener("submit", function (event) {
+        // Impede o recarregamento da página
+        event.preventDefault();
+
+        // 3 - Capturando o valor digitado pelo usuário
+        const tarefa = inputTarefa.value.trim();
+
+        if (tarefa === "") {
+          alert("Digite uma tarefa!");
+          inputTarefa.value = "";
+          inputTarefa.focus();
+          return;
+        }
+
+        // 4 - Criando novo elemento li
         const itemLista = document.createElement("li");
-        // 2 - Atualiza elemento com conteúdo
-        itemLista.textContent = "Estudar Eventos do JavaScript";
-        // 3 - Anexa/insere/adicionar item a lista
+
+        // 5 - Inserindo o texto digitado dentro do li
+        itemLista.textContent = tarefa;
+
+        // 6 - Adicionando o LI dentro da UL
         lista.appendChild(itemLista);
+
+        // 7 - Limpando o input
+        inputTarefa.value = "";
       });
     </script>
   </body>
